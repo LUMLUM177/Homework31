@@ -13,7 +13,6 @@ import java.util.OptionalInt;
 public class EmployeeService {
 
     private final Map<Integer, Employee> employees = new HashMap<>();
-    private final Map<Integer, Employee> employeesHighSalary = new HashMap<>();
 
     public Collection<Employee> getAllEmployees() {
         return this.employees.values();
@@ -50,12 +49,13 @@ public class EmployeeService {
     }
 
     public Collection<Employee> getAllEmployeesHighSalary() {
+        Map<Integer, Employee> employeesHighSalary = new HashMap<>();
         for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
             if (entry.getValue().getSalary() > getAverageSum()) {
                 employeesHighSalary.put(entry.getKey(), entry.getValue());
             }
         }
-        return this.employeesHighSalary.values();
+        return employeesHighSalary.values();
     }
 
     public double getAverageSum () {
